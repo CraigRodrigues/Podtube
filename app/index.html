@@ -3,9 +3,14 @@
   <head>
     <meta charset="utf-8">
     <title>Podtube.io</title>
+    <script src="node_modules/lodash/lodash.js"></script>
+    <script src="node_modules/angular/angular.js"></script>
   </head>
   <body>
     <h1>Podtube</h1>
+    <div ng-app="app">
+      <podtube></podtube>
+    </div>
     <div id="App">
       <div id="Top">
         <div>
@@ -103,5 +108,7 @@
         <p>HACK REACT</p>
       </div>
     </div>
+    <script src="app/index.js"></script>
+    <script src="app/components/podtube.js"></script>
   </body>
 </html>
