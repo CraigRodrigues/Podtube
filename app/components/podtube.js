@@ -13,9 +13,9 @@ angular.module('app')
     thumbnail: 'https://i.ytimg.com/vi/_X0mgOOSpLU/hqdefault.jpg'
   }];
 
-  this.searchYoutube = () => {
+  this.searchYoutube = (input) => {
     this.videos = window.exampleVideoData;
-    console.log('Search clicked!');
+    console.log(input);
   };
 
   this.addToPlaylist = () => {
