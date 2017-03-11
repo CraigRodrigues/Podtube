@@ -5,7 +5,7 @@ angular.module('app')
 .directive('searchResults', function() {
   return {
     scope: {
-      srv: '<'
+      videoSearchResults: '<'
     },
     controller: 'SearchCtrl',
     controllerAs: 'ctrl',
