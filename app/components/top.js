@@ -4,7 +4,9 @@ angular.module('app')
 })
 .directive('top', function() {
   return {
-    scope: {},
+    scope: {
+      searchYoutube: '<'
+    },
     controller: 'AppCtrl',
     transclude: true,
     controllerAs: 'ctrl',
