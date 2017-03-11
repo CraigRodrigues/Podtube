@@ -1,4 +1,4 @@
 <div>
   <input class="form-control" type="text" ng-model="ctrl.query" ng-keyup="$event.keyCode == 13 && ctrl.searchYoutube(ctrl.query)" />
-  <button class="btn" ng-click="ctrl.searchYoutube(ctrl.query) && ctrl.clearSearch()" >Search</button>
+  <button class="btn" ng-click="ctrl.searchYoutube(ctrl.query); ctrl.clearSearch()" >Search</button>
 </div>
