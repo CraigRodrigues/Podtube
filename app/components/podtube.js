@@ -19,7 +19,6 @@ angular.module('app')
   };
 
   this.addToPlaylist = (video) => {
-    let podcastAudioUrl;
     let config = {
       data: video.id.videoId
     };
@@ -28,18 +27,24 @@ angular.module('app')
 
     // Get video url and do POST request to my API to get the correct audio url
     $http.post('http://localhost:8080/podcasts/playlist', config).then(function mySuccess(response) {
-      console.log(response.data);
-      podcastAudioUrl = response.data.formats[15].url;
+
+      let audioArray = response.data.formats;
+
+      let podcastAudioUrlList = audioArray.filter(audioUrl => audioUrl.format === 'audio only');
+      console.log(podcastAudioUrlList);
+
+      let audioUrl;
+
+      podcastAudioUrlList.length > 0 ? audioUrl = podcastAudioUrlList[0].url : audioUrl = audioArray[0].url;
+
+      console.log(audioUrl);
 
       // Construct object for playlist entry
       let newVideo = {
         title: video.snippet.title,
-        audioUrl: podcastAudioUrl,
+        audioUrl: audioUrl,
         thumbnail: video.snippet.thumbnails.medium.url,
       }
-
-      console.log(podcastAudioUrl);
-      console.log(newVideo);
 
       that.playlist.push(newVideo);
     }, function myError(response) {
