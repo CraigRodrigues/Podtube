@@ -39,11 +39,11 @@ module.exports = {
     },
     post: function(req, res) {
       console.log('UPDATING PLAYLIST');
-      console.log(req.headers.url);
+      console.log(req.body.data);
 
       unirest.post("https://savedeo.p.mashape.com/download")
       .header(headers.mashape)
-      .send("url=" + req.headers.url)
+      .send("url=http://www.youtube.com/watch?v=" + req.body.data)
       .end(function (result) {
         res.send(result.body);
       });

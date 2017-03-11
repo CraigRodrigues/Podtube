@@ -1,10 +1,13 @@
 // Simple server
 var express = require('express');
+var parser = require('body-parser');
 
 var app = express();
 
 app.set('port', 8080);
 console.log((__dirname));
+app.use(parser.json());
+
 app.use(express.static(__dirname));
 
 var router = require('./routes.js');

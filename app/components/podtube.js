@@ -1,16 +1,7 @@
 angular.module('app')
 .controller('PodtubeCtrl', function($http) {
-  this.videos = window.exampleVideoData;
-  this.playlist = [{
-    title: 'The power of believing that you can improve | Carol Dweck',
-    audioUrl: 'https://r1---sn-vgqs7nes.googlevideo.com/videoplayback?mv=m&upn=1xbrwNI2yMc&id=o-AAWSc6rGb-xgFO2QIUffpnAzEG8oNyyE6-vQjVNlKBlc&mm=31&mn=sn-vgqs7nes&ms=au&mt=1489202844&gir=yes&ip=104.197.75.157&key=yt6&requiressl=yes&ei=EW_DWKOpEJGGuQL35Y7QAQ&lmt=1454325624985051&mime=audio%2Fwebm&expire=1489224561&sparams=clen%2Cdur%2Cei%2Cgir%2Cid%2Cinitcwndbps%2Cip%2Cipbits%2Citag%2Ckeepalive%2Clmt%2Cmime%2Cmm%2Cmn%2Cms%2Cmv%2Cpl%2Crequiressl%2Csource%2Cupn%2Cexpire&keepalive=yes&source=youtube&dur=282.001&itag=251&pl=20&initcwndbps=8971250&ipbits=0&clen=4327017&signature=26593BFC6EEF4647DD611939AF054419D314D76C.56065A74AD98E53D0F9F0CDD38D48A0AE4342EEF&ratebypass=yes&title=Self+Compassion',
-    thumbnail: 'https://i.ytimg.com/vi/_X0mgOOSpLU/hqdefault.jpg'
-  },
-  {
-    title: 'The power of believing that you can improve | Carol Dweck',
-    audioUrl: 'https://r1---sn-vgqs7nes.googlevideo.com/videoplayback?mv=m&upn=1xbrwNI2yMc&id=o-AAWSc6rGb-xgFO2QIUffpnAzEG8oNyyE6-vQjVNlKBlc&mm=31&mn=sn-vgqs7nes&ms=au&mt=1489202844&gir=yes&ip=104.197.75.157&key=yt6&requiressl=yes&ei=EW_DWKOpEJGGuQL35Y7QAQ&lmt=1454325624985051&mime=audio%2Fwebm&expire=1489224561&sparams=clen%2Cdur%2Cei%2Cgir%2Cid%2Cinitcwndbps%2Cip%2Cipbits%2Citag%2Ckeepalive%2Clmt%2Cmime%2Cmm%2Cmn%2Cms%2Cmv%2Cpl%2Crequiressl%2Csource%2Cupn%2Cexpire&keepalive=yes&source=youtube&dur=282.001&itag=251&pl=20&initcwndbps=8971250&ipbits=0&clen=4327017&signature=26593BFC6EEF4647DD611939AF054419D314D76C.56065A74AD98E53D0F9F0CDD38D48A0AE4342EEF&ratebypass=yes&title=Self+Compassion',
-    thumbnail: 'https://i.ytimg.com/vi/_X0mgOOSpLU/hqdefault.jpg'
-  }];
+
+  this.playlist = [];
 
   this.searchYoutube = (input) => {
     let that = this;
@@ -28,15 +19,36 @@ angular.module('app')
   };
 
   this.addToPlaylist = (video) => {
-    let newVideo = {
-      title: video.snippet.title,
-      audioUrl: 'https://r1---sn-vgqs7nes.googlevideo.com/videoplayback?mv=m&upn=1xbrwNI2yMc&id=o-AAWSc6rGb-xgFO2QIUffpnAzEG8oNyyE6-vQjVNlKBlc&mm=31&mn=sn-vgqs7nes&ms=au&mt=1489202844&gir=yes&ip=104.197.75.157&key=yt6&requiressl=yes&ei=EW_DWKOpEJGGuQL35Y7QAQ&lmt=1454325624985051&mime=audio%2Fwebm&expire=1489224561&sparams=clen%2Cdur%2Cei%2Cgir%2Cid%2Cinitcwndbps%2Cip%2Cipbits%2Citag%2Ckeepalive%2Clmt%2Cmime%2Cmm%2Cmn%2Cms%2Cmv%2Cpl%2Crequiressl%2Csource%2Cupn%2Cexpire&keepalive=yes&source=youtube&dur=282.001&itag=251&pl=20&initcwndbps=8971250&ipbits=0&clen=4327017&signature=26593BFC6EEF4647DD611939AF054419D314D76C.56065A74AD98E53D0F9F0CDD38D48A0AE4342EEF&ratebypass=yes&title=Self+Compassion',
-      thumbnail: video.snippet.thumbnails.default.url,
-    }
-    this.playlist.push(newVideo);
-    console.log(video);
-    console.log('Added to playlist');
-  }
+    let podcastAudioUrl;
+    let config = {
+      data: video.id.videoId
+    };
+
+    let that = this;
+
+    // Get video url and do POST request to my API to get the correct audio url
+    $http.post('http://localhost:8080/podcasts/playlist', config).then(function mySuccess(response) {
+      console.log(response.data);
+      podcastAudioUrl = response.data.formats[15].url;
+
+      // Construct object for playlist entry
+      let newVideo = {
+        title: video.snippet.title,
+        audioUrl: podcastAudioUrl,
+        thumbnail: video.snippet.thumbnails.medium.url,
+      }
+
+      console.log(podcastAudioUrl);
+      console.log(newVideo);
+
+      that.playlist.push(newVideo);
+    }, function myError(response) {
+      console.log(response.statusText);
+    });
+  };
+
+  // Default videos
+  this.videos = this.searchYoutube('Ted Talks');
 })
 .directive('podtube', function() {
   return {
