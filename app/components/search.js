@@ -1,7 +1,9 @@
 angular.module('app')
 .controller('SearchCtrl', function() {
   console.log('Inside controller');
-  this.searchYoutube = function() {
+  console.log(window.exampleVideoData);
+  console.log(window.exampleAudioData[0].formats[15].url);
+  this.searchYoutube = () => {
     console.log('Search clicked!');
   };
 })

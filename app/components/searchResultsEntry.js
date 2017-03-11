@@ -6,7 +6,9 @@ angular.module('app')
 })
 .directive('searchResultsEntry', function() {
   return {
-    scope: {},
+    scope: {
+      video: '<'
+    },
     controller: 'SearchResultsCtrl',
     controllerAs: 'ctrl',
     bindToController: true,

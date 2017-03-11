@@ -1,5 +1,6 @@
 <div>
-  <img src="https://i.ytimg.com/vi/4ZAEBxGipoA/default.jpg" alt="thumbnail" ng-click="ctrl.addToPlaylist()" />
-  <p>React JS Tutorial for Beginners - 1 - Introduction</p>
+  <img ng-src="{{ ctrl.video.snippet.thumbnails.default.url }}" alt="thumbnail" ng-click="ctrl.addToPlaylist()" />
+  <p>{{ ctrl.video.snippet.title }}</p>
+  <p>{{ ctrl.video.snippet.description }}</p>
   <p>Length: 62m 40s</p>
 </div>
