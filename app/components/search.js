@@ -6,6 +6,7 @@ angular.module('app')
   this.searchYoutube = () => {
     console.log('Search clicked!');
   };
+  this.videoQueryResults = [];
 })
 .directive('search', function() {
   return {
