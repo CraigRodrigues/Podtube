@@ -1,6 +1,7 @@
 var unirest = require('unirest');
 var http = require('http');
 var api = require('./env/config.js')
+var db = require('./models.js')
 
 let headers = {
   mashape: {
@@ -24,10 +25,8 @@ module.exports = {
 
       unirest.get('https://www.googleapis.com/youtube/v3/search')
       .query(headers.youtube)
-      // .send("url=" + req.headers.url)
       .end(function (result) {
         res.send(result.body);
-        // console.log(result.status, result.headers, result.body);
       });
     }
   },
@@ -38,13 +37,13 @@ module.exports = {
     },
     post: function(req, res) {
       console.log('UPDATING PLAYLIST');
+      console.log(req.headers.url);
 
       unirest.post("https://savedeo.p.mashape.com/download")
       .header(headers.mashape)
       .send("url=" + req.headers.url)
       .end(function (result) {
         res.send(result.body);
-        // console.log(result.status, result.headers, result.body);
       });
     }
   }
