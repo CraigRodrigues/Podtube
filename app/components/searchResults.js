@@ -1,11 +1,12 @@
 angular.module('app')
-.controller('SearchCtrl', function() {
-  this.videos = window.exampleVideoData;
-  console.log('search results videos', this.videos);
+.controller('SearchCtrl', function($scope) {
+  console.log($scope);
 })
 .directive('searchResults', function() {
   return {
-    scope: {},
+    scope: {
+      srv: '<'
+    },
     controller: 'SearchCtrl',
     controllerAs: 'ctrl',
     bindToController: true,
