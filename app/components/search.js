@@ -6,7 +6,12 @@ angular.module('app')
   // this.searchYoutube = () => {
   //   console.log('Search clicked!');
   // };
-  this.videoQueryResults = [];
+
+  this.query = '';
+  this.clearSearch = () => {
+    this.query = '';
+    console.log('clear')
+  }
 })
 .directive('search', function() {
   return {

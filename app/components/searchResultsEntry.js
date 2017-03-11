@@ -1,5 +1,5 @@
 angular.module('app')
-.controller('SearchResultsCtrl', function() {
+.controller('SearchResultsEntryCtrl', function() {
   // this.addToPlaylist = () => {
   //   console.log('Add to playlist!');
   // }
@@ -10,7 +10,7 @@ angular.module('app')
       video: '<',
       addToPlaylist: '<'
     },
-    controller: 'SearchResultsCtrl',
+    controller: 'SearchResultsEntryCtrl',
     controllerAs: 'ctrl',
     bindToController: true,
     templateUrl: 'app/templates/search-results-entry.html'
