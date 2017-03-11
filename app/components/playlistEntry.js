@@ -1,11 +1,12 @@
 angular.module('app')
-.controller('AppCtrl', function() {
-
+.controller('PlayListEntryCtrl', function($scope) {
 })
 .directive('playlistEntry', function() {
   return {
-    scope: {},
-    controller: 'AppCtrl',
+    scope: {
+      podcast: '<'
+    },
+    controller: 'PlayListEntryCtrl',
     controllerAs: 'ctrl',
     bindToController: true,
     templateUrl: 'app/templates/playlist-entry.html'

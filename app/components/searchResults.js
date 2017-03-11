@@ -1,11 +1,11 @@
 angular.module('app')
 .controller('SearchCtrl', function($scope) {
-  console.log($scope);
 })
 .directive('searchResults', function() {
   return {
     scope: {
-      videoSearchResults: '<'
+      videoSearchResults: '<',
+      addToPlaylist: '<'
     },
     controller: 'SearchCtrl',
     controllerAs: 'ctrl',

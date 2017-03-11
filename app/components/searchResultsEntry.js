@@ -1,13 +1,14 @@
 angular.module('app')
 .controller('SearchResultsCtrl', function() {
-  this.addToPlaylist = () => {
-    console.log('Add to playlist!');
-  }
+  // this.addToPlaylist = () => {
+  //   console.log('Add to playlist!');
+  // }
 })
 .directive('searchResultsEntry', function() {
   return {
     scope: {
-      video: '<'
+      video: '<',
+      addToPlaylist: '<'
     },
     controller: 'SearchResultsCtrl',
     controllerAs: 'ctrl',
