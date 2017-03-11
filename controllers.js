@@ -9,7 +9,11 @@ let headers = {
     'Accept': 'application/json'
   },
   youtube: {
-
+    part: 'snippet',
+    q: 'cats',
+    type: 'video',
+    key: api.YOUTUBE_API_KEY,
+    maxResults: 5
   }
 }
 
@@ -18,9 +22,9 @@ module.exports = {
     get: function(req, res) {
       console.log('SEARCHING YOUTUBE');
 
-      unirest.post("https://savedeo.p.mashape.com/download")
-      .header(headers.mashape)
-      .send("url=" + req.headers.url)
+      unirest.get('https://www.googleapis.com/youtube/v3/search')
+      .query(headers.youtube)
+      // .send("url=" + req.headers.url)
       .end(function (result) {
         res.send(result.body);
         // console.log(result.status, result.headers, result.body);
@@ -36,9 +40,7 @@ module.exports = {
       console.log('UPDATING PLAYLIST');
 
       unirest.post("https://savedeo.p.mashape.com/download")
-      .header("X-Mashape-Key", "")
-      .header("Content-Type", "application/x-www-form-urlencoded")
-      .header("Accept", "application/json")
+      .header(headers.mashape)
       .send("url=" + req.headers.url)
       .end(function (result) {
         res.send(result.body);
