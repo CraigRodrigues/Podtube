@@ -1,5 +1,5 @@
 <div id="Playlist">
   <ul>
-    <playlist-entry ng-repeat="podcast in ctrl.podcastList" podcast="podcast"></playlist-entry>
+    <playlist-entry ng-repeat="podcast in ctrl.podcastList track by $index" podcast="podcast"></playlist-entry>
   </ul>
 </div>
