@@ -1,4 +1,5 @@
 // Simple server to serve index.html
+var path = require('path');
 var express = require('express');
 var app = express();
 

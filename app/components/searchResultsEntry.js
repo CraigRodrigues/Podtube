@@ -1,11 +1,13 @@
 angular.module('app')
-.controller('AppCtrl', function() {
-
+.controller('SearchResultsCtrl', function() {
+  this.addToPlaylist = () => {
+    console.log('Add to playlist!');
+  }
 })
 .directive('searchResultsEntry', function() {
   return {
     scope: {},
-    controller: 'AppCtrl',
+    controller: 'SearchResultsCtrl',
     controllerAs: 'ctrl',
     bindToController: true,
     templateUrl: 'app/templates/search-results-entry.html'
