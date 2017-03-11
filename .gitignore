@@ -22,8 +22,14 @@ coverage
 build/
 dist/
 
-# API Keys and Headers
-env/
+## Mac OSX ##
+.DS_Store
+
+## NPM ##
+node_modules/
+
+## API keys ##
+env/config.js
 
 # Dependency directorys
 # Deployed apps should consider commenting these lines out:

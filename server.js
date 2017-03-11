@@ -1,7 +1,5 @@
 // Simple server
 var express = require('express');
-var unirest = require('unirest');
-var http = require("http");
 
 var app = express();
 
