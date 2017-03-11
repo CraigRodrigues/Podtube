@@ -13,10 +13,14 @@ angular.module('app')
   }];
 
   this.searchYoutube = (input) => {
-    console.log('Before Before', this.videos);
     let that = this;
+    let config = {
+      params: {
+        query: input
+      }
+    };
 
-    $http.get('http://localhost:8080/podcasts/search').then(function mySuccess(response) {
+    $http.get('http://localhost:8080/podcasts/search', config).then(function mySuccess(response) {
       that.videos = response.data.items;
     }, function myError(response) {
       console.log(response.statusText);
