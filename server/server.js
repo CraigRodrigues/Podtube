@@ -4,7 +4,8 @@ var express = require('express');
 var app = express();
 
 app.set('port', 8080);
-app.use(express.static('/'));
+console.log(__dirname + '/../app');
+app.use(express.static(__dirname + '/../app'));
 app.use(express.static('/app'));
 
 app.listen(app.get('port'));
