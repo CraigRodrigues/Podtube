@@ -1,16 +1,25 @@
 var unirest = require('unirest');
 var http = require('http');
+var api = require('./env/config.js')
+
+let headers = {
+  mashape: {
+    'X-Mashape-Key': api.MASHAPE_API_KEY,
+    'Content-Type': 'application/x-www-form-urlencoded',
+    'Accept': 'application/json'
+  },
+  youtube: {
+
+  }
+}
 
 module.exports = {
   search: {
     get: function(req, res) {
       console.log('SEARCHING YOUTUBE');
-      console.log(req.headers);
 
       unirest.post("https://savedeo.p.mashape.com/download")
-      .header("X-Mashape-Key", "zwtchzLBP2msheBIGc2Fa4Bo3a26p1lrVEojsnL0dtlgBGCxOo")
-      .header("Content-Type", "application/x-www-form-urlencoded")
-      .header("Accept", "application/json")
+      .header(headers.mashape)
       .send("url=" + req.headers.url)
       .end(function (result) {
         res.send(result.body);
@@ -27,7 +36,7 @@ module.exports = {
       console.log('UPDATING PLAYLIST');
 
       unirest.post("https://savedeo.p.mashape.com/download")
-      .header("X-Mashape-Key", "zwtchzLBP2msheBIGc2Fa4Bo3a26p1lrVEojsnL0dtlgBGCxOo")
+      .header("X-Mashape-Key", "")
       .header("Content-Type", "application/x-www-form-urlencoded")
       .header("Accept", "application/json")
       .send("url=" + req.headers.url)
