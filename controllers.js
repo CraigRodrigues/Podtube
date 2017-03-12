@@ -40,21 +40,11 @@ module.exports = {
     post: function(req, res) {
       console.log('UPDATING PLAYLIST');
       console.log(req.body.data);
+      console.log(req.body.currentPlaylist);
 
       let craigsList = new Playlist({
         username: 'Craig',
-        playlist: [
-          {
-            title: 'Title',
-            audioUrl: 'www.google.com',
-            thumbnail: 'www.thumbnail.com'
-          },
-          {
-            title: 'Title 2',
-            audioUrl: 'www.google.com',
-            thumbnail: 'www.thumbnail.com'
-          }
-        ]
+        playlist: []
       });
 
       console.log(craigsList);
