@@ -36,6 +36,7 @@ angular.module('app')
   };
 
   this.addToPlaylist = (video) => {
+
     let config = {
       currentPlaylist: this.playlist,
       data: video.id.videoId

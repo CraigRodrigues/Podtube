@@ -16,7 +16,7 @@ db.once('open', function() {
 // Create playlist schema
 var playlistSchema = mongoose.Schema({
   username: String,
-  playlist: { type: Array, required: true }
+  playlist: { type: Array, required: false }
 });
 
 var Playlist = mongoose.model('Playlist', playlistSchema);
