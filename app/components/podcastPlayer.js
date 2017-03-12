@@ -1,5 +1,6 @@
 angular.module('app')
-.controller('PodcastPlayerCtrl', function($scope) {
+.controller('PodcastPlayerCtrl', function() {
+
 })
 .directive('podcastPlayer', function() {
   return {
