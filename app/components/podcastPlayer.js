@@ -5,12 +5,18 @@ angular.module('app')
 
   $scope.$watch('ctrl.audio', function(newVal, oldVal) {
     player.src = newVal;
+    player.currentTime = that.podcast.currentPosition;
   });
 
+  // Keep track of the current position of any podcast in the list
+  player.onpause = () => {
+    this.podcast.currentPosition = player.currentTime;
+  };
+
+  // Custom audio controls
   this.previous = () => {
-    console.dir($scope);
     console.dir(player);
-    player.clientHeight = 64;
+    console.log(this.podcast.currentPosition);
   };
   this.next;
   this.skipBackwards = () => {
