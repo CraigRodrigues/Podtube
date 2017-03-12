@@ -44,30 +44,25 @@ module.exports = {
 
     },
     post: function(req, res) {
-      console.log('UPDATING PLAYLIST');
+      console.log('FETCHING AUDIO');
 
-      let craigsList = new Playlist({
-        username: 'Craig',
-        playlist: ['']
-      });
+      // Playlist.findOne({ username: 'Craig' }, function(err, user) {
+      //   if (err) throw err;
 
-      Playlist.findOne({ username: 'Craig' }, function(err, user) {
-        if (err) throw err;
+      //   user.playlist = req.body.currentPlaylist;
+      //   console.log(user.playlist);
 
-        user.playlist = req.body.currentPlaylist;
-        console.log(user.playlist);
+      //   user.save(function(err) {
+      //     if (err) throw err;
 
-        user.save(function(err) {
-          if (err) throw err;
+      //     console.log('Playlist successfully updated!');
+      //   });
 
-          console.log('Playlist successfully updated!');
-        });
-
-      });
+      // });
 
       unirest.post("https://savedeo.p.mashape.com/download")
       .header(headers.mashape)
-      .send("url=http://www.youtube.com/watch?v=" + req.body.data)
+      .send("url=" + req.body.data)
       .end(function (result) {
         res.send(result.body);
       });

@@ -18,6 +18,9 @@ angular.module('app')
 
   this.currentPodcast = this.playlist[0];
 
+  // Do post request to grab the audio when user clicks on a podcast video
+  this.currentAudio;
+
   // API call to query the current playlist
   this.getPlaylist = () => {
     let that = this;
@@ -30,8 +33,32 @@ angular.module('app')
     });
   }
 
+  this.getAudio = (videoUrl, callback) => {
+    let that = this;
+    let config = {
+      data: videoUrl
+    };
+
+    // Get video url and do POST request to my API to get the correct audio url
+    $http.post('http://localhost:8080/podcasts/playlist', config).then(function mySuccess(response) {
+
+      let audioUrl;
+      let audioArray = response.data.formats;
+      let podcastAudioUrlList = audioArray.filter(audioUrl => audioUrl.format === 'audio only');
+      console.log(podcastAudioUrlList);
+
+      podcastAudioUrlList.length > 0 ? audioUrl = podcastAudioUrlList[0].url : audioUrl = audioArray[0].url;
+
+      console.log(audioUrl);
+      //callback();
+    }, function myError(response) {
+      console.log(response.statusText);
+    });
+  }
+
   this.selectVideo = (video) => {
     console.log(video);
+    this.getAudio(video.videoUrl);
     this.currentPodcast = video;
   }
 
