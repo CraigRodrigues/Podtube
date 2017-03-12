@@ -124,9 +124,12 @@ angular.module('app')
       favorite: false
     };
 
-    console.log(newVideo);
+    // Only push if the video isn't in the list
+    let found = this.playlist.find(podcast => podcast.videoUrl === newVideo.videoUrl);
 
-    this.playlist.push(newVideo);
+    if (!found) {
+      this.playlist.push(newVideo);
+    }
 
     // let config = {
     //   currentPlaylist: this.playlist,
