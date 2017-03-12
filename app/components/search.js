@@ -1,8 +1,5 @@
 angular.module('app')
 .controller('SearchCtrl', function() {
-  console.log(window.exampleVideoData);
-  console.log(window.exampleAudioData[0].formats[15].url);
-
   this.query = '';
   this.clearSearch = () => {
     this.query = '';

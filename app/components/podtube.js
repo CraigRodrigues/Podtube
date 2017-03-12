@@ -56,10 +56,9 @@ angular.module('app')
 
   this.selectVideo = (video) => {
     let that = this;
-    console.log(video);
+
     this.getAudio(video.videoUrl, function(audioUrl) {
       that.currentAudio = audioUrl;
-      console.log(that.currentAudio);
       that.currentPodcast = video;
     });
   }
@@ -177,7 +176,8 @@ angular.module('app')
   }
 
   // Default videos
-  this.videos = this.searchYoutube('School of Life');
+  this.videos = this.searchYoutube('Angular 2');
+  this.selectVideo(this.playlist[0]);
 })
 .directive('podtube', function() {
   return {
