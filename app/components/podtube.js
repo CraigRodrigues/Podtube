@@ -35,6 +35,26 @@ angular.module('app')
     });
   };
 
+  this.parseVideo = {
+    date(date) {
+      let dateObj = new Date(date);
+      const month = ['January', 'February','March','April','May','June','July','August','September','October','November', 'December'];
+      return {
+        month: month[dateObj.getMonth()],
+        year: dateObj.getFullYear()
+      }
+    },
+    videoUrl(videoId) {
+      return `https://www.youtube.com/watch?v=${videoId}`;
+    },
+    channelUrl(channelId) {
+      return `https://www.youtube.com/channel/${channelId}`;
+    },
+    title(name) {
+      return `${name[0].toUpperCase()}${name.slice(1)}`;
+    }
+  }
+
   this.parseDate = (date) => {
     let dateObj = new Date(date);
     const month = ['January', 'February','March','April','May','June','July','August','September','October','November', 'December'];
@@ -46,14 +66,22 @@ angular.module('app')
 
   this.addToPlaylist = (video) => {
     console.log(video);
+
     let date = this.parseDate(video.snippet.publishedAt);
 
     let newVideo =  {
-      title: video.snippet.title,
-      channel: video.snippet.channelTitle,
+      title: this.parseVideo.title(video.snippet.title),
+      channel: this.parseVideo.title(video.snippet.channelTitle),
       month: date.month,
-      year: date.year
-    }
+      year: date.year,
+      videoUrl: this.parseVideo.videoUrl(video.id.videoId),
+      channelUrl: this.parseVideo.channelUrl(video.snippet.channelId),
+      currentPosition: 0,
+      played: false,
+      favorite: false
+    };
+
+    console.log(newVideo);
 
     this.playlist.push(newVideo);
 
