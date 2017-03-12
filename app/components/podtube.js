@@ -4,9 +4,11 @@ angular.module('app')
   this.playlist = [];
 
   this.getPlaylist = () => {
+    let that = this;
+
     $http.get('http://localhost:8080/podcasts/playlist').then(function mySuccess(response) {
       console.log(response);
-
+      that.playlist = response.data;
     }, function myError(response) {
       console.log(response.statusText);
     });
