@@ -44,13 +44,20 @@ module.exports = {
 
       let craigsList = new Playlist({
         username: 'Craig',
-        playlist: []
+        playlist: ['one']
       });
 
       console.log(craigsList);
 
       craigsList.save(function(err) {
-        if (err) throw err;
+        if (err) {
+          console.log('Error Inserting New Data');
+          if (err.name == 'ValidationError') {
+            for (field in err.errors) {
+              console.log(err.errors[field].message);
+            }
+          }
+        }
 
         console.log('Playlist saved successfully!');
       });
