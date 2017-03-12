@@ -15,10 +15,17 @@ angular.module('app')
 
   // Custom audio controls
   this.previous = () => {
-    console.dir(player);
-    console.log(this.podcast.currentPosition);
+    let i = this.podcastPlaylist.indexOf(this.podcast);
+    if (this.podcastPlaylist[i - 1]) {
+      this.selectVideo(this.podcastPlaylist[i - 1]);
+    }
   };
-  this.next;
+  this.next = () => {
+    let i = this.podcastPlaylist.indexOf(this.podcast);
+    if (this.podcastPlaylist[i + 1]) {
+      this.selectVideo(this.podcastPlaylist[i + 1]);
+    }
+  };
   this.skipBackwards = () => {
     player.currentTime -= 30;
   };
@@ -39,8 +46,10 @@ angular.module('app')
 .directive('podcastPlayer', function() {
   return {
     scope: {
+      podcastPlaylist: '<',
       podcast: '<',
-      audio: '<'
+      audio: '<',
+      selectVideo: '<'
     },
     controller: 'PodcastPlayerCtrl',
     controllerAs: 'ctrl',
