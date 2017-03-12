@@ -2,9 +2,21 @@ angular.module('app')
 .controller('PodtubeCtrl', function($http) {
 
   // Initialize the playlist
-  this.playlist = [];
+  this.playlist = [
+    {
+      channel: "The School of Life",
+      channelUrl: "https://www.youtube.com/channel/UC7IcJI8PUf5Z3zKxnZvTBog",
+      currentPosition: 0,
+      favorite: false,
+      month: "February",
+      played: false,
+      title: "How To Be Confident",
+      videoUrl: "https://www.youtube.com/watch?v=0Tk82hEHNnY",
+      year: 2017
+    }
+  ];
 
-  this.currentPodcast;
+  this.currentPodcast = this.playlist[0];
 
   // API call to query the current playlist
   this.getPlaylist = () => {

@@ -1,10 +1,10 @@
 angular.module('app')
-.controller('PodcastPlayerCtrl', function() {
+.controller('PodcastPlayerCtrl', function($scope) {
   this.player = player = document.getElementById('audioPlayer');
 
-  this.podcast;
   this.previous = () => {
-    console.dir(player);
+    console.dir($scope);
+    console.dir(this.podcast);
     player.clientHeight = 64;
   };
   this.next;
@@ -27,7 +27,9 @@ angular.module('app')
 })
 .directive('podcastPlayer', function() {
   return {
-    scope: {},
+    scope: {
+      podcast: '<'
+    },
     controller: 'PodcastPlayerCtrl',
     controllerAs: 'ctrl',
     bindToController: true,
