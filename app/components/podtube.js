@@ -45,21 +45,23 @@ angular.module('app')
       let audioUrl;
       let audioArray = response.data.formats;
       let podcastAudioUrlList = audioArray.filter(audioUrl => audioUrl.format === 'audio only');
-      console.log(podcastAudioUrlList);
 
       podcastAudioUrlList.length > 0 ? audioUrl = podcastAudioUrlList[0].url : audioUrl = audioArray[0].url;
 
-      console.log(audioUrl);
-      //callback();
+      callback(audioUrl);
     }, function myError(response) {
       console.log(response.statusText);
     });
   }
 
   this.selectVideo = (video) => {
+    let that = this;
     console.log(video);
-    this.getAudio(video.videoUrl);
-    this.currentPodcast = video;
+    this.getAudio(video.videoUrl, function(audioUrl) {
+      that.currentAudio = audioUrl;
+      console.log(that.currentAudio);
+      that.currentPodcast = video;
+    });
   }
 
   // API call to search youTube videos
