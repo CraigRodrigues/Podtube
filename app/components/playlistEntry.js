@@ -1,5 +1,10 @@
 angular.module('app')
 .controller('PlayListEntryCtrl', function($scope) {
+  this.favorite = () => {
+    this.podcast.favorite = !this.podcast.favorite;
+    console.log(this.podcast.favorite);
+    console.log(this.podcast);
+  };
 })
 .directive('playlistEntry', function() {
   return {
