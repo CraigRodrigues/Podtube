@@ -51,24 +51,17 @@ angular.module('app')
       return `https://www.youtube.com/channel/${channelId}`;
     },
     title(name) {
+      // Capitalize first letter of any titles
       return `${name[0].toUpperCase()}${name.slice(1)}`;
     }
-  }
-
-  this.parseDate = (date) => {
-    let dateObj = new Date(date);
-    const month = ['January', 'February','March','April','May','June','July','August','September','October','November', 'December'];
-    return {
-      month: month[dateObj.getMonth()],
-      year: dateObj.getFullYear()
-    }
-  }
+  };
 
   this.addToPlaylist = (video) => {
-    console.log(video);
 
-    let date = this.parseDate(video.snippet.publishedAt);
+    // Parse readable date from ISO date
+    let date = this.parseVideo.date(video.snippet.publishedAt);
 
+    // Construct new video object
     let newVideo =  {
       title: this.parseVideo.title(video.snippet.title),
       channel: this.parseVideo.title(video.snippet.channelTitle),
