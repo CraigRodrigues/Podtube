@@ -35,7 +35,12 @@ module.exports = {
 
   playlist: {
     get: function (req, res) {
-      res.send('GETTINGPLAYLIST');
+      Playlist.findOne({ username: 'Craig' }, function(err, user) {
+        if (err) throw err;
+
+        res.send(user.playlist);
+      });
+
     },
     post: function(req, res) {
       console.log('UPDATING PLAYLIST');
@@ -44,22 +49,21 @@ module.exports = {
 
       let craigsList = new Playlist({
         username: 'Craig',
-        playlist: ['one']
+        playlist: ['']
       });
 
-      console.log(craigsList);
+      Playlist.findOne({ username: 'Craig' }, function(err, user) {
+        if (err) throw err;
 
-      craigsList.save(function(err) {
-        if (err) {
-          console.log('Error Inserting New Data');
-          if (err.name == 'ValidationError') {
-            for (field in err.errors) {
-              console.log(err.errors[field].message);
-            }
-          }
-        }
+        user.playlist = req.body.currentPlaylist;
+        console.log(user.playlist);
 
-        console.log('Playlist saved successfully!');
+        user.save(function(err) {
+          if (err) throw err;
+
+          console.log('Playlist successfully updated!!!!!');
+        });
+
       });
 
       unirest.post("https://savedeo.p.mashape.com/download")
