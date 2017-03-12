@@ -1,11 +1,4 @@
 <li class="podcast-entry">
-  <p class="podcast-title">{{ ctrl.podcast.title }}</p>
-  <p>{{ ctrl.podcast.channel }}</p>
-  <p>{{ ctrl.podcast.date }}</p>
-  <audio controls="controls" id="{{ ctrl.podcast.title }}" class="audio">
-    <source ng-src="">
-    Your browser does not support the audio element.
-  </audio>
-  <br>
-  <button class="btn">Remove</button>
+  <p>Published: {{ ctrl.podcast.month }} - {{ ctrl.podcast.year }}</p>
+  <p class="podcast-title"><{{ ctrl.podcast.channel }}> - {{ ctrl.podcast.title }}</p><p>PLAY BUTTON</p><p>REMOVE BUTTON</p>
 </li>

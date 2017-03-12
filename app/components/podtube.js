@@ -35,13 +35,24 @@ angular.module('app')
     });
   };
 
+  this.parseDate = (date) => {
+    let dateObj = new Date(date);
+    const month = ['January', 'February','March','April','May','June','July','August','September','October','November', 'December'];
+    return {
+      month: month[dateObj.getMonth()],
+      year: dateObj.getFullYear()
+    }
+  }
+
   this.addToPlaylist = (video) => {
     console.log(video);
+    let date = this.parseDate(video.snippet.publishedAt);
 
     let newVideo =  {
       title: video.snippet.title,
       channel: video.snippet.channelTitle,
-      date: video.snippet.publishedAt
+      month: date.month,
+      year: date.year
     }
 
     this.playlist.push(newVideo);
