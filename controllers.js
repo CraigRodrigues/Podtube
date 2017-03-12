@@ -1,7 +1,7 @@
 var unirest = require('unirest');
 var http = require('http');
 var api = require('./env/config.js')
-var db = require('./db.js')
+var Playlist = require('./db.js')
 
 let headers = {
   mashape: {
@@ -40,6 +40,30 @@ module.exports = {
     post: function(req, res) {
       console.log('UPDATING PLAYLIST');
       console.log(req.body.data);
+
+      let craigsList = new Playlist({
+        username: 'Craig',
+        playlist: [
+          {
+            title: 'Title',
+            audioUrl: 'www.google.com',
+            thumbnail: 'www.thumbnail.com'
+          },
+          {
+            title: 'Title 2',
+            audioUrl: 'www.google.com',
+            thumbnail: 'www.thumbnail.com'
+          }
+        ]
+      });
+
+      console.log(craigsList);
+
+      craigsList.save(function(err) {
+        if (err) throw err;
+
+        console.log('Playlist saved successfully!');
+      });
 
       unirest.post("https://savedeo.p.mashape.com/download")
       .header(headers.mashape)

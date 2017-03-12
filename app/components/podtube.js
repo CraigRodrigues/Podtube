@@ -44,7 +44,7 @@ angular.module('app')
         title: video.snippet.title,
         audioUrl: audioUrl,
         thumbnail: video.snippet.thumbnails.medium.url,
-      }
+      };
 
       that.playlist.push(newVideo);
     }, function myError(response) {

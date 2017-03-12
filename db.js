@@ -20,3 +20,5 @@ var playlistSchema = mongoose.Schema({
 });
 
 var Playlist = mongoose.model('Playlist', playlistSchema);
+
+module.exports = Playlist;
