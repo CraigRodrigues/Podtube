@@ -1,6 +1,7 @@
 angular.module('app')
 .controller('PodtubeCtrl', function($http) {
 
+  // init empty playlist
   this.playlist = [];
 
   this.getPlaylist = () => {
@@ -24,6 +25,8 @@ angular.module('app')
 
     $http.get('http://localhost:8080/podcasts/search', config).then(function mySuccess(response) {
       that.videos = response.data.items;
+
+      // If playlist is empty attempt to populate it from DB
       if (!that.playList) {
         that.getPlaylist();
       }
@@ -67,11 +70,21 @@ angular.module('app')
     });
   };
 
-  // Default videos
-  this.videos = this.searchYoutube('Ted Talks');
+  this.removeFromPlaylist = (video) => {
+    $http.post('http://localhost:8080/podcasts/playlist', config).then(function mySuccess(response) {
+      that.videos = response.data.items;
 
-  // Init saved playlist
-  // this.getPlaylist();
+      // If playlist is empty attempt to populate it from DB
+      if (!that.playList) {
+        that.getPlaylist();
+      }
+    }, function myError(response) {
+      console.log(response.statusText);
+    });
+  }
+
+  // Default videos
+  this.videos = this.searchYoutube('School of Life');
 })
 .directive('podtube', function() {
   return {

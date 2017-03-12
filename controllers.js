@@ -22,7 +22,6 @@ module.exports = {
   search: {
     get: function(req, res) {
       console.log('SEARCHING YOUTUBE');
-
       headers.youtube.q = req.query.query;
 
       unirest.get('https://www.googleapis.com/youtube/v3/search')
@@ -35,6 +34,8 @@ module.exports = {
 
   playlist: {
     get: function (req, res) {
+      console.log('RETRIEVING PLAYLIST');
+
       Playlist.findOne({ username: 'Craig' }, function(err, user) {
         if (err) throw err;
 
@@ -44,8 +45,6 @@ module.exports = {
     },
     post: function(req, res) {
       console.log('UPDATING PLAYLIST');
-      console.log(req.body.data);
-      console.log(req.body.currentPlaylist);
 
       let craigsList = new Playlist({
         username: 'Craig',
@@ -61,7 +60,7 @@ module.exports = {
         user.save(function(err) {
           if (err) throw err;
 
-          console.log('Playlist successfully updated!!!!!');
+          console.log('Playlist successfully updated!');
         });
 
       });
