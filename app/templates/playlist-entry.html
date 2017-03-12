@@ -1,7 +1,6 @@
 <li>
-  <img ng-src=" {{ ctrl.podcast.thumbnail }} " alt="{{ ctrl.podcast.title }}" />
-  <p>{{ ctrl.podcast.title }}</p>
-  <audio controls>
+  <p class="text-center">{{ ctrl.podcast.title }}</p>
+  <audio controls="controls" id="{{ ctrl.podcast.title }}">
     <source ng-src="{{ ctrl.podcast.audioUrl }}">
     Your browser does not support the audio element.
   </audio>
