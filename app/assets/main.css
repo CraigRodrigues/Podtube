@@ -96,6 +96,8 @@ h1 {
 .search {
   width: 800px;
   height: 300px;
+  padding-left: 80px;
+  padding-right: 80px;
   overflow-x: scroll;
   overflow-y: scroll;
 }
@@ -115,7 +117,8 @@ h1 {
 }
 
 .searchbar {
-  width: 200px;
+  width: 300px;
+  height: 100px;
   float: left;
   display: inline;
 }
@@ -157,4 +160,20 @@ h1 {
 .btn:hover {
   background: #e3f5ff;
   text-decoration: none;
+}
+
+/* Input Field */
+input[type=text] {
+  font-family: 'Work Sans', 'Hind', 'Quicksand', "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+  width: 50%;
+  padding: 8px 15px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  -webkit-transition: width 0.4s ease-in-out;
+  transition: width 0.4s ease-in-out;
+}
+
+input[type=text]:focus {
+  width: 100%;
 }
