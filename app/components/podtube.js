@@ -4,6 +4,8 @@ angular.module('app')
   // Initialize the playlist
   this.playlist = [];
 
+  this.currentPodcast;
+
   // API call to query the current playlist
   this.getPlaylist = () => {
     let that = this;
@@ -14,6 +16,11 @@ angular.module('app')
     }, function myError(response) {
       console.log(response.statusText);
     });
+  }
+
+  this.selectVideo = (video) => {
+    console.log(video);
+    this.currentPodcast = video;
   }
 
   // API call to search youTube videos

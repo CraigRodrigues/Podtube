@@ -1,6 +1,6 @@
 <div class="playlist">
   <ul class="playlist-list">
     <h2>Playlist</h2>
-    <playlist-entry ng-repeat="podcast in ctrl.podcastList track by $index" podcast="podcast" class="podcast"></playlist-entry>
+    <playlist-entry ng-repeat="podcast in ctrl.podcastList track by $index" podcast="podcast" class="podcast" select-video="ctrl.selectVideo"></playlist-entry>
   </ul>
 </div>

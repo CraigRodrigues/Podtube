@@ -4,7 +4,8 @@ angular.module('app')
 .directive('playlist', function() {
   return {
     scope: {
-      podcastList: '<'
+      podcastList: '<',
+      selectVideo: '<'
     },
     controller: 'PlayListCtrl',
     controllerAs: 'ctrl',
