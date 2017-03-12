@@ -1,7 +1,7 @@
 var unirest = require('unirest');
 var http = require('http');
 var api = require('./env/config.js')
-var db = require('./models.js')
+var db = require('./db.js')
 
 let headers = {
   mashape: {

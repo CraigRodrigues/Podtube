@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var Schema = mongoose.Schema;
 
 mongoose.connect('mongodb://localhost/podtube');
 
@@ -12,9 +13,10 @@ db.once('open', function() {
   console.log('mongoose connected successfully');
 });
 
+// Create playlist schema
 var playlistSchema = mongoose.Schema({
   username: String,
-  description: String
+  playlist: { type: Array, required: true }
 });
 
-var playlist = mongoose.model('Playlist', playlistSchema);
+var Playlist = mongoose.model('Playlist', playlistSchema);
