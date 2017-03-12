@@ -27,48 +27,57 @@ angular.module('app')
       that.videos = response.data.items;
 
       // If playlist is empty attempt to populate it from DB
-      if (!that.playList) {
-        that.getPlaylist();
-      }
+      // if (!that.playList) {
+      //   that.getPlaylist();
+      // }
     }, function myError(response) {
       console.log(response.statusText);
     });
   };
 
   this.addToPlaylist = (video) => {
+    console.log(video);
 
-    let config = {
-      currentPlaylist: this.playlist,
-      data: video.id.videoId
-    };
+    let newVideo =  {
+      title: video.snippet.title,
+      channel: video.snippet.channelTitle,
+      date: video.snippet.publishedAt
+    }
 
-    let that = this;
+    this.playlist.push(newVideo);
 
-    // Get video url and do POST request to my API to get the correct audio url
-    $http.post('http://localhost:8080/podcasts/playlist', config).then(function mySuccess(response) {
+    // let config = {
+    //   currentPlaylist: this.playlist,
+    //   data: video.id.videoId
+    // };
 
-      let audioArray = response.data.formats;
+    // let that = this;
 
-      let podcastAudioUrlList = audioArray.filter(audioUrl => audioUrl.format === 'audio only');
-      console.log(podcastAudioUrlList);
+    // // Get video url and do POST request to my API to get the correct audio url
+    // $http.post('http://localhost:8080/podcasts/playlist', config).then(function mySuccess(response) {
 
-      let audioUrl;
+    //   let audioArray = response.data.formats;
 
-      podcastAudioUrlList.length > 0 ? audioUrl = podcastAudioUrlList[0].url : audioUrl = audioArray[0].url;
+    //   let podcastAudioUrlList = audioArray.filter(audioUrl => audioUrl.format === 'audio only');
+    //   console.log(podcastAudioUrlList);
 
-      console.log(audioUrl);
+    //   let audioUrl;
 
-      // Construct object for playlist entry
-      let newVideo = {
-        title: video.snippet.title,
-        audioUrl: audioUrl,
-        thumbnail: video.snippet.thumbnails.medium.url,
-      };
+    //   podcastAudioUrlList.length > 0 ? audioUrl = podcastAudioUrlList[0].url : audioUrl = audioArray[0].url;
 
-      that.playlist.push(newVideo);
-    }, function myError(response) {
-      console.log(response.statusText);
-    });
+    //   console.log(audioUrl);
+
+    //   // Construct object for playlist entry
+    //   let newVideo = {
+    //     title: video.snippet.title,
+    //     audioUrl: audioUrl,
+    //     thumbnail: video.snippet.thumbnails.medium.url,
+    //   };
+
+    //   that.playlist.push(newVideo);
+    // }, function myError(response) {
+    //   console.log(response.statusText);
+    // });
   };
 
   this.removeFromPlaylist = (video) => {
