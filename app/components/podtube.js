@@ -166,16 +166,20 @@ angular.module('app')
   };
 
   this.removeFromPlaylist = (video) => {
-    $http.post('http://localhost:8080/podcasts/playlist', config).then(function mySuccess(response) {
-      that.videos = response.data.items;
+    // $http.post('http://localhost:8080/podcasts/playlist', config).then(function mySuccess(response) {
+    //   that.videos = response.data.items;
 
-      // If playlist is empty attempt to populate it from DB
-      if (!that.playList) {
-        that.getPlaylist();
-      }
-    }, function myError(response) {
-      console.log(response.statusText);
-    });
+    //   // If playlist is empty attempt to populate it from DB
+    //   if (!that.playList) {
+    //     that.getPlaylist();
+    //   }
+    // }, function myError(response) {
+    //   console.log(response.statusText);
+    // });
+
+    console.log(video);
+    let index = this.playlist.findIndex(podcast => podcast.videoUrl === video.videoUrl);
+    this.playlist.splice(index, 1);
   }
 
   // Default videos

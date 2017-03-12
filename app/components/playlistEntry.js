@@ -10,7 +10,8 @@ angular.module('app')
   return {
     scope: {
       podcast: '<',
-      selectVideo: '<'
+      selectVideo: '<',
+      removeFromPlaylist: '<'
     },
     controller: 'PlayListEntryCtrl',
     controllerAs: 'ctrl',
