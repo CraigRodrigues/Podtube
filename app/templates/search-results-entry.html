@@ -1,5 +1,5 @@
-<div>
-  <img ng-src="{{ ctrl.video.snippet.thumbnails.default.url }}" alt="thumbnail" ng-click="ctrl.addToPlaylist(ctrl.video)" />
-  <p>{{ ctrl.video.snippet.title }}</p>
-  <p>{{ ctrl.video.snippet.description }}</p>
+<div class="results">
+  <center><img class="search-results-image" ng-src="{{ ctrl.video.snippet.thumbnails.medium.url }}" alt="thumbnail" ng-click="ctrl.addToPlaylist(ctrl.video)" /></center>
+  <p class="search-results-title">{{ ctrl.video.snippet.title }}</p>
+  <p class="search-results-description">{{ ctrl.video.snippet.description }}</p>
 </div>

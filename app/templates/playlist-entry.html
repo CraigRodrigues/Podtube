@@ -1,8 +1,9 @@
 <li>
-  <p class="text-center">{{ ctrl.podcast.title }}</p>
-  <audio controls="controls" id="{{ ctrl.podcast.title }}">
+  <p class="podcast-title">{{ ctrl.podcast.title }}</p>
+  <audio controls="controls" id="{{ ctrl.podcast.title }}" class="audio">
     <source ng-src="{{ ctrl.podcast.audioUrl }}">
     Your browser does not support the audio element.
   </audio>
+  <br>
   <button class="btn">Remove</button>
 </li>

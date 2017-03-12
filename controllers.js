@@ -14,7 +14,7 @@ let headers = {
     q: 'cats',
     type: 'video',
     key: api.YOUTUBE_API_KEY,
-    maxResults: 5
+    maxResults: 10
   }
 }
 
