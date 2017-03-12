@@ -1,9 +1,10 @@
 angular.module('app')
 .controller('PodtubeCtrl', function($http) {
 
-  // init empty playlist
+  // Initialize the playlist
   this.playlist = [];
 
+  // API call to query the current playlist
   this.getPlaylist = () => {
     let that = this;
 
@@ -15,6 +16,7 @@ angular.module('app')
     });
   }
 
+  // API call to search youTube videos
   this.searchYoutube = (input) => {
     let that = this;
     let config = {
@@ -35,6 +37,7 @@ angular.module('app')
     });
   };
 
+  // Parses video data from youTube API object
   this.parseVideo = {
     date(date) {
       let dateObj = new Date(date);
