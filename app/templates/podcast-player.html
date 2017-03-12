@@ -11,9 +11,9 @@
   </div>
   <div class="player-controls">
     <div ng-click="ctrl.previous()">Previous</div>
-    <div>Skip Back</div>
-    <div>Speed</div>
-    <div>Skip Forward</div>
+    <div ng-click="ctrl.skipBackwards()">Skip Backwards</div>
+    <div ng-click="ctrl.changeSpeed()">Speed x{{ ctrl.player.playbackRate}}</div>
+    <div ng-click="ctrl.skipForwards()">Skip Forwards</div>
     <div>Next</div>
   </div>
 </div>
