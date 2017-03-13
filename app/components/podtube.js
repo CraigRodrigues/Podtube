@@ -148,7 +148,7 @@ angular.module('app')
   }
 
   // Default video search and current podcast
-  this.getPlaylist(() => this.searchYoutube('react conf 2016'));
+  this.getPlaylist(() => this.searchYoutube('Hack Reactor Interview'));
   this.selectVideo(this.playlist[0]);
 })
 .directive('podtube', function() {

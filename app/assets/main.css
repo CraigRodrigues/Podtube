@@ -69,33 +69,41 @@ h1 {
 
 .logo {
   padding: 10px;
+  margin-left: 25px;
   float: left;
 }
 
 .container {
   margin: 0 auto;
-  padding: 30px;
+  margin-top: 5px;
+  padding: 10px;
   width: 960px;
 }
 
 .upper {
   display: inline-block;
-  margin: 10px;
-  padding-left: 30px;
-  padding-right: 30px;
-  width: 800px;
-  height: 120px;
+  margin-top: 10px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 30px;
+  width: 100%;
+  height: 100px;
 }
 
 .navigationbar {
   display: inline;
   float: right;
-  width: 300px;
+  width: 230px;
 }
 
 .nav {
   display: inline;
+  padding-left: 8px;
   width: 200px;
+}
+
+.nav:hover {
+  text-decoration: underline;
 }
 
 .search {
@@ -122,10 +130,11 @@ h1 {
 }
 
 .searchbar {
-  width: 300px;
-  height: 100px;
-  float: left;
-  display: inline;
+  width: 200px;
+  height: 70px;
+  padding-right: 25px;
+  float: right;
+  display: inline-block;
 }
 
 .results {
@@ -145,6 +154,15 @@ h1 {
 .player-button {
   display: inline;
   padding: 5px;
+}
+
+.playlist {
+  width: 700px;
+  height: 700px;
+  margin-left: auto;
+  margin-right: auto;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
 .playlist-button {
@@ -197,8 +215,9 @@ h1 {
   border-bottom: 1px solid black;
 }
 
-.podcast-title {
-  padding: 10px;
+#podcast-title {
+  max-width: 85ch;
+  overflow: hidden;
 }
 
 .audio {
@@ -233,14 +252,7 @@ h1 {
 input[type=text] {
   font-family: 'Work Sans', 'Hind', 'Quicksand', "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 16px;
-  width: 50%;
-  padding: 8px 15px;
-  margin: 8px 0;
+  width: 200px;
+  margin-bottom: 5px;
   box-sizing: border-box;
-  -webkit-transition: width 0.4s ease-in-out;
-  transition: width 0.4s ease-in-out;
-}
-
-input[type=text]:focus {
-  width: 100%;
 }
