@@ -17,8 +17,6 @@ angular.module('app')
   ];
 
   this.currentPodcast = this.playlist[0];
-
-  // Do post request to grab the audio when user clicks on a podcast video
   this.currentAudio;
 
   // API call to query the current playlist
@@ -177,7 +175,6 @@ angular.module('app')
     //   console.log(response.statusText);
     // });
 
-    console.log(video);
     let index = this.playlist.findIndex(podcast => podcast.videoUrl === video.videoUrl);
     this.playlist.splice(index, 1);
   }
