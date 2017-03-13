@@ -20,12 +20,22 @@ let headers = {
 
 module.exports = {
   search: {
-    get: function(req, res) {
+    get(req, res) {
       console.log('SEARCHING YOUTUBE');
       headers.youtube.q = req.query.query;
 
       unirest.get('https://www.googleapis.com/youtube/v3/search')
       .query(headers.youtube)
+      .end(function (result) {
+        res.send(result.body);
+      });
+    },
+    post(req, res) {
+      console.log('FETCHING AUDIO');
+
+      unirest.post("https://savedeo.p.mashape.com/download")
+      .header(headers.mashape)
+      .send("url=" + req.body.data)
       .end(function (result) {
         res.send(result.body);
       });

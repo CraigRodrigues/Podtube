@@ -38,7 +38,7 @@ angular.module('app')
     };
 
     // Get video url and do POST request to my API to get the correct audio url
-    $http.post('http://localhost:8080/podcasts/playlist', config).then(function mySuccess(response) {
+    $http.post('http://localhost:8080/podcasts/search', config).then(function mySuccess(response) {
 
       let audioUrl;
       let audioArray = response.data.formats;
