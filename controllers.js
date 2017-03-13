@@ -54,28 +54,19 @@ module.exports = {
 
     },
     post: function(req, res) {
-      console.log('FETCHING AUDIO');
+      console.log('UPDATING PLAYLIST');
 
-      // Playlist.findOne({ username: 'Craig' }, function(err, user) {
-      //   if (err) throw err;
+      Playlist.findOne({ username: 'Craig' }, function(err, user) {
+        if (err) throw err;
+        user.playlist = req.body.data;
 
-      //   user.playlist = req.body.currentPlaylist;
-      //   console.log(user.playlist);
-
-      //   user.save(function(err) {
-      //     if (err) throw err;
-
-      //     console.log('Playlist successfully updated!');
-      //   });
-
-      // });
-
-      unirest.post("https://savedeo.p.mashape.com/download")
-      .header(headers.mashape)
-      .send("url=" + req.body.data)
-      .end(function (result) {
-        res.send(result.body);
+        user.save(function(err) {
+          if (err) throw err;
+          console.log('PLAYLIST SUCCESSFULLY UPDATED');
+        });
       });
+
+      res.send('Updated playlist');
     }
   }
 };

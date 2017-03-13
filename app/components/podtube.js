@@ -31,6 +31,21 @@ angular.module('app')
     });
   }
 
+  this.updatePlaylist = (playlist) => {
+    let that = this;
+
+    let config = {
+      data: playlist
+    };
+
+    $http.post('http://localhost:8080/podcasts/playlist', config).then(function mySuccess(response) {
+      console.log(response.data);
+      //that.playlist = response.data;
+    }, function myError(response) {
+      console.log(response.statusText);
+    });
+  }
+
   this.getAudio = (videoUrl, callback) => {
     let that = this;
     let config = {
@@ -72,11 +87,6 @@ angular.module('app')
 
     $http.get('http://localhost:8080/podcasts/search', config).then(function mySuccess(response) {
       that.videos = response.data.items;
-
-      // If playlist is empty attempt to populate it from DB
-      // if (!that.playList) {
-      //   that.getPlaylist();
-      // }
     }, function myError(response) {
       console.log(response.statusText);
     });
@@ -129,57 +139,15 @@ angular.module('app')
       this.playlist.push(newVideo);
     }
 
-    // let config = {
-    //   currentPlaylist: this.playlist,
-    //   data: video.id.videoId
-    // };
-
-    // let that = this;
-
-    // // Get video url and do POST request to my API to get the correct audio url
-    // $http.post('http://localhost:8080/podcasts/playlist', config).then(function mySuccess(response) {
-
-    //   let audioArray = response.data.formats;
-
-    //   let podcastAudioUrlList = audioArray.filter(audioUrl => audioUrl.format === 'audio only');
-    //   console.log(podcastAudioUrlList);
-
-    //   let audioUrl;
-
-    //   podcastAudioUrlList.length > 0 ? audioUrl = podcastAudioUrlList[0].url : audioUrl = audioArray[0].url;
-
-    //   console.log(audioUrl);
-
-    //   // Construct object for playlist entry
-    //   let newVideo = {
-    //     title: video.snippet.title,
-    //     audioUrl: audioUrl,
-    //     thumbnail: video.snippet.thumbnails.medium.url,
-    //   };
-
-    //   that.playlist.push(newVideo);
-    // }, function myError(response) {
-    //   console.log(response.statusText);
-    // });
+    this.updatePlaylist(this.playlist);
   };
 
   this.removeFromPlaylist = (video) => {
-    // $http.post('http://localhost:8080/podcasts/playlist', config).then(function mySuccess(response) {
-    //   that.videos = response.data.items;
-
-    //   // If playlist is empty attempt to populate it from DB
-    //   if (!that.playList) {
-    //     that.getPlaylist();
-    //   }
-    // }, function myError(response) {
-    //   console.log(response.statusText);
-    // });
-
     let index = this.playlist.findIndex(podcast => podcast.videoUrl === video.videoUrl);
     this.playlist.splice(index, 1);
   }
 
-  // Default videos
+  // Default video search and current podcast
   this.videos = this.searchYoutube('Angular 2');
   this.selectVideo(this.playlist[0]);
 })
