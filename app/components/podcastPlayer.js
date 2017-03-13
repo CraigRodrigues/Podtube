@@ -2,7 +2,7 @@ angular.module('app')
 .controller('PodcastPlayerCtrl', function($scope) {
   let that = this;
   this.player = player = document.getElementById('audioPlayer');
-  player.autoplay = true;
+  this.autoplayStatus = false;
 
   $scope.$watch('ctrl.audio', function(newVal, oldVal) {
     player.src = newVal;
@@ -24,6 +24,10 @@ angular.module('app')
   }
 
   // Custom audio controls
+  this.toggleAutoplay = () => {
+    this.autoplayStatus = !this.autoplayStatus;
+    player.autoplay = this.autoplayStatus;
+  }
   this.previous = () => {
     let i = this.podcastPlaylist.indexOf(this.podcast);
     if (this.podcastPlaylist[i - 1]) {
