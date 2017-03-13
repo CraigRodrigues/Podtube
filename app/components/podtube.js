@@ -20,12 +20,12 @@ angular.module('app')
   this.currentAudio;
 
   // API call to query the current playlist
-  this.getPlaylist = () => {
+  this.getPlaylist = (callback) => {
     let that = this;
 
     $http.get('http://localhost:8080/podcasts/playlist').then(function mySuccess(response) {
-      console.log(response);
       that.playlist = response.data;
+      callback();
     }, function myError(response) {
       console.log(response.statusText);
     });
@@ -40,7 +40,6 @@ angular.module('app')
 
     $http.post('http://localhost:8080/podcasts/playlist', config).then(function mySuccess(response) {
       console.log(response.data);
-      //that.playlist = response.data;
     }, function myError(response) {
       console.log(response.statusText);
     });
@@ -145,10 +144,11 @@ angular.module('app')
   this.removeFromPlaylist = (video) => {
     let index = this.playlist.findIndex(podcast => podcast.videoUrl === video.videoUrl);
     this.playlist.splice(index, 1);
+    this.updatePlaylist(this.playlist);
   }
 
   // Default video search and current podcast
-  this.videos = this.searchYoutube('Angular 2');
+  this.getPlaylist(() => this.searchYoutube('react conf 2016'));
   this.selectVideo(this.playlist[0]);
 })
 .directive('podtube', function() {
