@@ -12,6 +12,14 @@ angular.module('app')
   player.onpause = () => {
     this.podcast.currentPosition = player.currentTime;
   };
+  player.onended = () => {
+    // find podcast in playlist and update the one in the playlist not the current playlist one
+    console.log('ended');
+    let i = this.podcastPlaylist.indexOf(this.podcast);
+    console.log(this.podcastPlaylist[i]);
+    // send up the chain to render update immediately?
+    this.podcastPlaylist[i].played = true;
+  }
 
   // Custom audio controls
   this.previous = () => {
