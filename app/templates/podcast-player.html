@@ -9,12 +9,12 @@
     </audio>
   </div>
   <div class="player-controls">
-    <div ng-click="ctrl.previous()">Previous</div>
-    <div ng-click="ctrl.skipBackwards()">Skip Backwards</div>
-    <div ng-click="ctrl.changeSpeed()">Speed x{{ ctrl.player.playbackRate}}</div>
-    <div ng-click="ctrl.skipForwards()">Skip Forwards</div>
-    <div ng-click="ctrl.next()">Next</div>
-    <div>Favorite: {{ ctrl.podcast.favorite }}</div>
-    <div ng-click="ctrl.toggleAutoplay()">Autoplay: {{ ctrl.autoplayStatus }}</div>
+    <div ng-click="ctrl.previous()" class="player-button"><img src="/app/assets/prev.png" alt="Previous" /></div>
+    <div ng-click="ctrl.skipBackwards()" class="player-button"><img src="/app/assets/skipback.png" alt="Skip Backwards" /></div>
+    <div ng-click="ctrl.changeSpeed()" class="player-button"><img src="/app/assets/speed.png" alt="Speed" /><span class="speed-button">x{{ ctrl.player.playbackRate}}</span></div>
+    <div ng-click="ctrl.skipForwards()" class="player-button"><img src="/app/assets/skipforward.png" alt="Skip Forward" /></div>
+    <div ng-click="ctrl.next()" class="player-button"><img src="/app/assets/next.png" alt="Next" /></div>
+    <div class="player-button"><img src="/app/assets/favorite.png" alt="Favorite" /></div>
+    <div ng-click="ctrl.toggleAutoplay()" class="player-button"><img src="/app/assets/autoplay.png" alt="Autoplay" /></div>
   </div>
 </div>

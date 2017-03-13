@@ -135,12 +135,38 @@ h1 {
   display: inline-block;
 }
 
+.player-description {
+  font-size: 25px;
+  font-weight: bold;
+  text-align: center;
+  padding-bottom: 20px;
+}
+
+.player-button {
+  display: inline;
+  padding: 5px;
+}
+
+.player-button:hover {
+  border-bottom: 1px solid black;
+}
+
+.player-controls {
+  width: 470px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .podcast {
   margin: 10px;
 }
 
 .podcast-audio-player {
-  margin: 20px;
+  width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30px;
+  margin-bottom: 30px;
   padding: 20px;
   border: 1px solid black;
 }
@@ -160,6 +186,7 @@ h1 {
 
 .audio {
   width: 600px;
+  padding-bottom: 20px;
 }
 
 .playlist {
@@ -176,10 +203,8 @@ h1 {
 
 .btn {
   border-radius: 1px;
-  color: #545354;
   font-size: 10px;
   background: #ffffff;
-  text-decoration: none;
 }
 
 .btn:hover {
