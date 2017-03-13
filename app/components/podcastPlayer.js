@@ -2,6 +2,7 @@ angular.module('app')
 .controller('PodcastPlayerCtrl', function($scope) {
   let that = this;
   this.player = player = document.getElementById('audioPlayer');
+  player.autoplay = true;
 
   $scope.$watch('ctrl.audio', function(newVal, oldVal) {
     player.src = newVal;
@@ -19,6 +20,7 @@ angular.module('app')
     console.log(this.podcastPlaylist[i]);
     // send up the chain to render update immediately?
     this.podcastPlaylist[i].played = true;
+    this.next();
   }
 
   // Custom audio controls
