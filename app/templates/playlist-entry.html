@@ -1,8 +1,8 @@
 <li class="podcast-entry">
-  <p>{{ ctrl.podcast.month }} - {{ ctrl.podcast.year }}</p>
-  <p class="podcast-title">[ {{ ctrl.podcast.channel }} ] - {{ ctrl.podcast.title }}</p>
-  <p ng-click="ctrl.selectVideo(ctrl.podcast)">PLAY BUTTON</p>
-  <p ng-click="ctrl.removeFromPlaylist(ctrl.podcast)">REMOVE BUTTON</p>
-  <p ng-click="ctrl.favorite()">FAVORITE HEART</p>
-  <p>PLAYED: {{ ctrl.podcast.played }}</p>
+  <div class="playlist-text"><p>{{ ctrl.podcast.month }} - {{ ctrl.podcast.year }}</p></div>
+  <div class="playlist-text"><p id="podcast-title">[ {{ ctrl.podcast.channel }} ] - {{ ctrl.podcast.title }}</p></div>
+  <div class="playlist-button" ng-click="ctrl.selectVideo(ctrl.podcast)"><img src="/app/assets/play.png" alt="Play" /></div>
+  <div class="playlist-button" ng-click="ctrl.removeFromPlaylist(ctrl.podcast)"><img src="/app/assets/delete.png" alt="Delete" /></div>
+  <div class="playlist-button" ng-click="ctrl.favorite()"><img src="/app/assets/favorite.png" alt="Favorite" /></div>
+  <div class="playlist-button"><p>PLAYED: {{ ctrl.podcast.played }}</p></div>
 </li>
